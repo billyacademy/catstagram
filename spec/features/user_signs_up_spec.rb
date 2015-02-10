@@ -4,12 +4,13 @@ feature "user signs up", %q{
   As a User
   I want to register an account
   So that I can be identified on the website by other Users
+
+
+  Acceptance Criteria
+
+  [] -  I must provide my email, a password, and a password confirmation
+  [] -  I see an error message if I do not provide all required information
   } do
-
-    # Acceptance Criteria
-
-    # - I must provide my email, a password, and a password confirmation
-    # - I see an error message if I do not provide all required information
 
     scenario "user signs up with valid information" do
       visit new_user_registration_path
