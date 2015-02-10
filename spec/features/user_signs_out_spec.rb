@@ -1,0 +1,18 @@
+require 'rails_helper'
+require 'spec_helper'
+
+feature "user signs out", %q{
+  As a User
+  I want to sign out
+  So that other people can't use my account
+  } do
+
+    scenario "user signs out" do
+      user = FactoryGirl.create(:user)
+      sign_in_as(user)
+      save_and_open_page
+      click_on "Logout"
+
+      expect(page).to have_content "Signed out successfully."
+    end
+  end
