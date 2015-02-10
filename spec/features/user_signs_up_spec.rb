@@ -8,8 +8,8 @@ feature "user signs up", %q{
 
   Acceptance Criteria
 
-  [] -  I must provide my email, a password, and a password confirmation
-  [] -  I see an error message if I do not provide all required information
+  [x] -  I must provide my email, a password, and a password confirmation
+  [x] -  I see an error message if I do not provide all required information
   } do
 
     scenario "user signs up with valid information" do
@@ -18,7 +18,7 @@ feature "user signs up", %q{
       fill_in "Email", with: "meow@meow.com"
       fill_in "Password", with: "meow1234"
       fill_in "Password confirmation", with: "meow1234"
-      click_on "Sign up"
+      click_button "Sign up"
 
       expect(page).to have_content "Meow! You have signed up successfully."
     end
@@ -26,7 +26,7 @@ feature "user signs up", %q{
     scenario "user signs up without required information" do
       visit new_user_registration_path
 
-      click_on "Sign up"
+      click_button "Sign up"
 
       expect(page).to have_content "Email can't be blank"
       expect(page).to have_content "Password can't be blank"

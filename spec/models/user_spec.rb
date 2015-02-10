@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+#keep in mind here, devise sets up validations
 describe User do
   describe "#password" do
     it { should have_valid(:password).when("abcd1234", "asd^2jk@%#&!!") }
