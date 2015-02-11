@@ -10,4 +10,9 @@ class MeowsController < ApplicationController
       redirect_to :back
     end
   end
+
+  def destroy
+    current_user.meows.destroy(params[:id])
+    redirect_to :back, notice: "All evidence of your meowing has been destroyed!"
+  end
 end
