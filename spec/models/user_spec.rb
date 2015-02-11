@@ -2,7 +2,8 @@ require 'rails_helper'
 #keep in mind here, devise sets up validations
 describe User do
   it { should have_many(:posts).dependent(:destroy) }
-  
+  it { should have_many(:meows).dependent(:destroy) }
+
   describe "#password" do
     it { should have_valid(:password).when("abcd1234", "asd^2jk@%#&!!") }
     it { should_not have_valid(:password).when("abcd123", nil, "") }

@@ -11,6 +11,8 @@ describe Post do
   it { should have_valid(:description).when(nil, "", ("a"*140)) }
   it { should_not have_valid(:description).when("a"*141) }
 
+  it { should have_many(:meows).dependent(:destroy) }
+
   describe ".by_recency" do
     it "orders the posts by most recent first" do
       oldest = FactoryGirl.create(:post, created_at: Time.now - 3.days)
@@ -20,5 +22,24 @@ describe Post do
       expect(Post.by_recency).to eq [newest, middle, oldest]
     end
   end
+
+  describe "#has_meow_from?" do
+    it "returns true if given user has already created a meow for post" do
+      post = FactoryGirl.create(:post)
+      user = FactoryGirl.create(:user)
+      meow = FactoryGirl.create(:meow, user: user, post: post)
+
+      expect(post).to have_meow_from user
+    end
+
+    it "returns false if given user has not already created a meow for post" do
+      post = FactoryGirl.create(:post)
+      user = FactoryGirl.create(:user)
+      meow = FactoryGirl.create(:meow, post: post)
+
+      expect(post).to_not have_meow_from user
+    end
+  end
+
 
 end
